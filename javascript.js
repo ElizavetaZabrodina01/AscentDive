@@ -17,6 +17,8 @@ document.getElementById('third').addEventListener("click", () => {
 // например, валидации каждого поля ввода при его изменении. Пусть это будет простое условие, 
 // например, длина строки не более 20 символов.
 const button = document.getElementById('button');
+const notification = document.getElementById('error');
+notification.style.display = 'none';
 document.getElementById('inputs').addEventListener('input', (event) => {
     if(event.target.tagName === 'INPUT') {
         checkString(event.target);
@@ -24,10 +26,14 @@ document.getElementById('inputs').addEventListener('input', (event) => {
 })
 
 function checkString(string) {
-    if (string.value.length > 5) { // 5 символов чтобы проверить быстрее
+    if (string.value.length > 20) { 
         string.style.borderColor = 'red';
         button.disabled = true;
+        notification.style.display = 'block';
         return false
     }
-    return true
+    else {
+        notification.style.display = 'none';
+        return true
+    }
 }
